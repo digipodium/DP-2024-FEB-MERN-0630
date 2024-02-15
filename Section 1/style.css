@@ -1,0 +1,12 @@
+.footer-btn{
+    background-color: transparent;
+    padding: 10px 20px;
+    color: white;
+    border: 2px solid white;
+    transition-duration: 300ms;
+}
+
+.footer-btn:hover{
+    background-color: white;
+    color: black;
+}
