@@ -22,6 +22,7 @@ movies.shift(); //removes element from the start
 
 console.log(movies);
 
+
 // indexing
 console.log( movies[2] );
 console.log( movies[40] );
