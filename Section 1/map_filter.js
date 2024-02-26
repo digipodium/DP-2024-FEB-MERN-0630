@@ -48,3 +48,28 @@ console.log('lichi'.length);
 const fruitsWith5 = fruits.filter( (f) => { return f.length <= 5 } );
 console.log(fruitsWith5);
 
+const phoneList = [
+    { brand : 'Samsung', model : 'Galaxy M31', price : 14999, color : [ 'Blue', 'Black', 'Red' ] },
+    { brand : 'Mi', model : 'A3', price : 19999, color : [ 'Gray', 'Black' ] },
+    { brand : 'Apple', model : 'Iphone 15', price : 85000, color : [ 'White', 'Blue', 'Black' ] },
+    { brand : 'OnePlus', model : '11T', price : 45000, color : [ 'Green', 'Red' ] },
+    { brand : 'Samsung', model : 'J7', price : 25000, color : [ 'gold', 'Red' ] }
+];
+
+const budgetPhones = phoneList.filter( (phone) => { return phone.price < 20000 } );
+console.log(budgetPhones);  
+
+// ['Samsung', 'Mi', 'Apple', 'OnePlus']
+
+const brands = phoneList.map( (phone) => { return phone.brand } );
+console.log(brands);
+
+// filter phones with black color
+
+console.log(['a', 'b', 'c'].includes('c'));
+
+const blackPhones = phoneList.filter( (phone) => { return phone.color.includes('Black') } );
+console.log(blackPhones);
+
+const samsungPhones = phoneList.filter( (phone) => { return phone.brand === 'Samsung' } );
+console.log(samsungPhones);
