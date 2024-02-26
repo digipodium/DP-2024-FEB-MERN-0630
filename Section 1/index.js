@@ -30,6 +30,7 @@ if(45%2 === 0){
     console.log('odd');
 }
 
+
 age = 35;
 if(age >=18){
     console.log('you are eligible for DL');
