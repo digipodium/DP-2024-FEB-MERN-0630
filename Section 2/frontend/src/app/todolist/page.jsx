@@ -7,10 +7,33 @@ const TodoList = () => {
         { text: 'Do Coding', completed: false },
         { text: 'Play Games', completed: false },
         { text: 'Bring Milk', completed: false },
+        { text: 'Bring Milk', completed: false },
     ]);
 
     const addTask = (e) => {
-        console.log(e.key);
+        if (e.code === 'Enter') {
+            console.log(e.target.value);
+
+            const obj = { text: e.target.value, completed: false };
+
+            setTaskList([obj, ...taskList]);
+
+            e.target.value = '';
+        }
+    }
+
+    const deleteTask = (index) => {
+        // console.log(index);
+        const temp = taskList;
+        temp.splice(index, 1);
+        setTaskList([...temp]);
+    }
+
+    const completeTask = (index) => {
+        const temp = taskList;
+        temp[index].completed = true;
+        setTaskList([...temp]);
+        console.log(temp);
     }
 
     return (
@@ -27,7 +50,26 @@ const TodoList = () => {
                             onKeyDown={addTask}
                         />
                     </div>
-                    <div className='card-body'></div>
+                    <div className='card-body'>
+
+                        {
+                            taskList.map((task, index) => {
+                                return <div key={index} className='mb-4 d-flex justify-content-between align-items-center'>
+                                    <p className='my-auto'>{task.text}</p>
+                                    {task.completed ?
+                                        <span className='badge bg-success'>Completed</span>
+                                        : <span className='badge bg-warning'>Pending</span>}
+                                    <button
+                                        onClick={() => { deleteTask(index) }}
+                                        className='btn btn-danger'>Delete</button>
+                                    <button
+                                        onClick={() => { completeTask(index) }}
+                                        className='btn btn-primary'>Complete Task</button>
+                                </div>
+                            })
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>
