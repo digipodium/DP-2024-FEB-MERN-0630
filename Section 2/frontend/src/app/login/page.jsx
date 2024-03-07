@@ -2,18 +2,25 @@
 import React from 'react';
 import Link from 'next/link';
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const Login = () => {
 
+  const loginValidationSchema = Yup.object().shape({
+    email : Yup.string().email('ye kaisa email hai').required('email nhi hai tumhara'),
+    password : Yup.string().required('password nhi hai tumhara')
+  });
+
   const loginForm = useFormik({
     initialValues: {
-      email : '',
-      password : ''
+      email: '',
+      password: ''
     },
     onSubmit: (values) => {
       console.log(values);
       // send data to backend
-    }
+    },
+    validationSchema: loginValidationSchema
   });
 
   return (
@@ -40,31 +47,35 @@ const Login = () => {
                 <div className="card shadow">
                   <div className="card-body py-5 px-md-5">
                     <h4 className='text-center fw-bold text-primary my-4'>Login To Continue</h4>
-                    <form onSubmit={ loginForm.handleSubmit } >
+                    <form onSubmit={loginForm.handleSubmit} >
                       {/* 2 column grid layout with text inputs for the first and last names */}
                       <div className="mb-3">
                         <label for="" className="form-label">Email Address</label>
                         <input
                           type="text"
                           id="email"
-                          onChange={ loginForm.handleChange }
-                          value={ loginForm.values.email }
+                          onChange={loginForm.handleChange}
+                          value={loginForm.values.email}
                           className="form-control"
                           placeholder=""
                         />
-                        <small className="text-muted">Enter Valid Email</small>
+                        { loginForm.touched.email && 
+                        <small className="text-danger">{loginForm.errors.email}</small>
+                        }
                       </div>
                       <div className="mb-3">
                         <label for="" className="form-label">Password</label>
                         <input
                           type="password"
                           id="password"
-                          onChange={ loginForm.handleChange }
-                          value={ loginForm.values.password }
+                          onChange={loginForm.handleChange}
+                          value={loginForm.values.password}
                           className="form-control"
                           placeholder=""
                         />
-                        <small className="text-muted">Enter Valid Password</small>
+                        { loginForm.touched.password && 
+                        <small className="text-danger">{loginForm.errors.password}</small>
+                        }
                       </div>
 
                       <div className="form-check mb-4">
